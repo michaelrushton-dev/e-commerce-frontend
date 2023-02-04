@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductList from './components/ProductList';
+import ProductAdd from './components/ProductAdd';
 import './App.css';
 
 function App() {
@@ -15,9 +17,14 @@ function App() {
     }, []);
 
     return (
-        <div className='App'>
-            <ProductList list={list} />
-        </div>
+        <BrowserRouter>
+            <div className='App'>
+                <Routes>
+                    <Route index element={<ProductList list={list} />} />
+                    <Route path='add-product' element={<ProductAdd />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 
