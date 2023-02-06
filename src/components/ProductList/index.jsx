@@ -1,10 +1,14 @@
-import React from 'react';
-import AddButton from './AddButton';
-import MassDeleteButton from './MassDeleteButton';
+import { React, useState } from 'react';
+import AddButton from './AddButton/index.jsx';
+import MassDeleteButton from './MassDeleteButton/index.jsx';
 import './product-list.css';
+import ProductTile from './ProductTile/index.jsx';
 
+//Main page
 function ProductList({ list }) {
-    console.log(list);
+    const [checked, setChecked] = useState([0]);
+    // console.log(list);
+    console.log({ checked });
     return (
         <>
             <div id='main-page'>
@@ -12,13 +16,26 @@ function ProductList({ list }) {
                     <h1>Product List</h1>
                     <div id='button-container'>
                         <AddButton />
-                        <MassDeleteButton />
+                        <MassDeleteButton
+                            checked={checked}
+                            setChecked={setChecked}
+                            fetchList={fetchList}
+                        />
                     </div>
                 </div>
+
+                {/* Container displaying tiles */}
                 <div id='product-display'>
                     {list &&
                         list.map((item) => {
-                            return <p>{item.name}</p>;
+                            return (
+                                <ProductTile
+                                    list={item}
+                                    key={item.id}
+                                    setChecked={setChecked}
+                                    checked={checked}
+                                />
+                            );
                         })}
                 </div>
             </div>

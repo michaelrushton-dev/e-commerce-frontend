@@ -1,0 +1,18 @@
+.product-tile {
+    background-color: aliceblue;
+    border: 2px solid black;
+    height: 15rem;
+    width: 20rem;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.checkbox-container {
+    display: flex;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
