@@ -4,25 +4,65 @@ import FurnitureForm from '../ProductTypes/FurnitureForm';
 import BookForm from '../ProductTypes/BookForm';
 
 function ProductForm() {
+    // CONTROLLED INPUTS
+    //state of type switcher which will conditionally render the product entry option (default DVD)
     const [type, setType] = useState('DVD');
-    function handleProduct(e) {
-        setType(e.target.value);
+
+    //state of input target values for each field
+    const [sku, setSku] = useState('');
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [value, setValue] = useState('');
+
+    function handleSubmit(e) {
+        //prevents page refresh on submit
+        e.preventDefault();
+        const newProduct = {
+            sku,
+            name,
+            price,
+            type,
+            value,
+        };
+        console.log(newProduct);
     }
+
     return (
         <>
             <div>ProductForm</div>
-            <form id='product_form'>
+            <form id='product_form' onSubmit={handleSubmit}>
                 <label>
                     <p>SKU</p>
-                    <input type='text' name='SKU' id='sku' />
+                    <input
+                        type='text'
+                        name='SKU'
+                        id='sku'
+                        required
+                        value={sku}
+                        onChange={(e) => setSku(e.target.value)}
+                    />
                 </label>
                 <label>
                     <p>NAME</p>
-                    <input type='text' name='NAME' id='name' />
+                    <input
+                        type='text'
+                        name='NAME'
+                        id='name'
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </label>
                 <label>
                     <p>PRICE($)</p>
-                    <input type='text' name='PRICE' id='price' />
+                    <input
+                        type='text'
+                        name='PRICE'
+                        id='price'
+                        required
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
                 </label>
 
                 <input type='submit' value='Submit' />
@@ -31,7 +71,8 @@ function ProductForm() {
                 <select
                     id='productType'
                     name='product-switcher'
-                    onChange={handleProduct}
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
                 >
                     <option value='DVD'>DVD</option>
                     <option value='Furniture'>Furniture</option>
@@ -39,11 +80,11 @@ function ProductForm() {
                 </select>
                 <div id='product-option'>
                     {type == 'DVD' ? (
-                        <DVDForm />
+                        <DVDForm setSize={setValue} />
                     ) : type == 'Furniture' ? (
-                        <FurnitureForm />
+                        <FurnitureForm setDimensions={setValue} />
                     ) : (
-                        <BookForm />
+                        <BookForm setWeight={setValue} />
                     )}
                 </div>
             </form>
