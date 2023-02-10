@@ -14,7 +14,7 @@ function ProductForm() {
     const [price, setPrice] = useState('');
     const [value, setValue] = useState('');
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         //prevents page refresh on submit
         e.preventDefault();
         const newProduct = {
@@ -25,6 +25,18 @@ function ProductForm() {
             value,
         };
         console.log(newProduct);
+
+        try {
+            const response = await fetch(
+                'http://localhost/scandiweb_proj/api/add_item.php',
+                { method: 'POST', body: JSON.stringify(newProduct) }
+            );
+            console.log(JSON.stringify(newProduct));
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log('There was an error', error);
+        }
     }
 
     return (
@@ -64,8 +76,6 @@ function ProductForm() {
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </label>
-
-                <input type='submit' value='Submit' />
 
                 <br></br>
                 <select
