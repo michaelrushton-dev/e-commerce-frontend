@@ -6,7 +6,7 @@ import ProductTile from './ProductTile/index.jsx';
 
 //Main page
 function ProductList({ list }) {
-    const [checked, setChecked] = useState([]);
+    const [checked, setChecked] = useState([0]);
     // console.log(list);
     console.log({ checked });
     return (
@@ -19,6 +19,7 @@ function ProductList({ list }) {
                         <MassDeleteButton
                             checked={checked}
                             setChecked={setChecked}
+                            fetchList={fetchList}
                         />
                     </div>
                 </div>
