@@ -1,29 +1,50 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext, useReducer } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import ProductAdd from './components/ProductAdd';
 import './App.css';
 
+export const ListContext = createContext();
+
 function App() {
-    const [list, setList] = useState();
+    const initialState = [];
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case 'fetch':
+                state = [...action.data];
+                console.log('fetch case');
+                return state;
+            case 'trigger':
+                fetchList();
+        }
+    };
+    // const [list, setList] = useState();
+    const [list, dispatch] = useReducer(reducer, initialState);
+
+    async function fetchList() {
+        console.log('fetchlist is triggered!');
+        const response = await fetch('http://localhost/scandiweb_proj/');
+        const data = await response.json(response);
+        // setList(data);
+        dispatch({ type: 'fetch', data: data });
+    }
 
     useEffect(() => {
-        async function fetchList() {
-            const response = await fetch('http://localhost/scandiweb_proj/');
-            const data = await response.json(response);
-            setList(data);
-        }
         fetchList();
     }, []);
 
     return (
         <BrowserRouter>
-            <div className='App'>
-                <Routes>
-                    <Route index element={<ProductList list={list} />} />
-                    <Route path='add-product' element={<ProductAdd />} />
-                </Routes>
-            </div>
+            <ListContext.Provider
+                value={{ listState: list, listDispatch: dispatch }}
+            >
+                <div className='App'>
+                    <Routes>
+                        <Route index element={<ProductList list={list} />} />
+                        <Route path='add-product' element={<ProductAdd />} />
+                    </Routes>
+                </div>
+            </ListContext.Provider>
         </BrowserRouter>
     );
 }
