@@ -18,14 +18,11 @@ function App() {
                 fetchList();
         }
     };
-    // const [list, setList] = useState();
     const [list, dispatch] = useReducer(reducer, initialState);
 
     async function fetchList() {
-        console.log('fetchlist is triggered!');
         const response = await fetch('http://localhost/scandiweb_proj/');
         const data = await response.json(response);
-        // setList(data);
         dispatch({ type: 'fetch', data: data });
     }
 

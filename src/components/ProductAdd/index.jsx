@@ -1,7 +1,7 @@
 import React from 'react';
-import './product-add.css';
 import SaveButton from './SaveButton';
 import CancelButton from './CancelButton';
+import ProductForm from './ProductForm';
 
 function ProductAdd() {
     return (
@@ -13,6 +13,9 @@ function ProductAdd() {
                         <SaveButton />
                         <CancelButton />
                     </div>
+                </div>
+                <div>
+                    <ProductForm />
                 </div>
             </div>
         </div>

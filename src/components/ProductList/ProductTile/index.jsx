@@ -1,5 +1,4 @@
 import React from 'react';
-import './product-tile.css';
 
 function ProductTile({ list, setChecked, checked }) {
     function handleChange(e) {

@@ -1,7 +1,6 @@
 import { React, useState } from 'react';
 import AddButton from './AddButton/index.jsx';
 import MassDeleteButton from './MassDeleteButton/index.jsx';
-import './product-list.css';
 import ProductTile from './ProductTile/index.jsx';
 
 //Main page

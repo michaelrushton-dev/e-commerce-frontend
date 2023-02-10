@@ -1,9 +1,11 @@
 import React from 'react';
 
 function SaveButton() {
-    return;
-
-    <button>Save</button>;
+    return (
+        <div>
+            <button>Save</button>
+        </div>
+    );
 }
 
 export default SaveButton;
