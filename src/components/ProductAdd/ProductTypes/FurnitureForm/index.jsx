@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function FurnitureForm({ setDimensions }) {
     const [measurements, setMeasurements] = useState({
@@ -7,14 +7,12 @@ function FurnitureForm({ setDimensions }) {
         length: '',
     });
 
-    function updateDimensions() {
-        console.log(measurements);
-        setDimensions(measurements);
-    }
-
-    // const [height, setHeight] = useState('');
-    // const [width, setWidth] = useState('');
-    // const [length, setLength] = useState('');
+    //useEffect updates dimensions(state in parent) whenever measurements state has a change (dependency list)[]
+    // prevents react rendering one step behind on every event change (key press in field)
+    useEffect(() => {
+        const heightWidthLength = `${measurements.height}x${measurements.width}x${measurements.length}`;
+        setDimensions(heightWidthLength);
+    }, [measurements]);
 
     return (
         <div id='Furniture'>
@@ -28,7 +26,6 @@ function FurnitureForm({ setDimensions }) {
                     onChange={(e) => {
                         const height = e.target.value;
                         setMeasurements({ ...measurements, height });
-                        updateDimensions();
                     }}
                 />
             </label>
@@ -42,7 +39,6 @@ function FurnitureForm({ setDimensions }) {
                     onChange={(e) => {
                         const width = e.target.value;
                         setMeasurements({ ...measurements, width });
-                        updateDimensions();
                     }}
                 />
             </label>
@@ -56,7 +52,6 @@ function FurnitureForm({ setDimensions }) {
                     onChange={(e) => {
                         const length = e.target.value;
                         setMeasurements({ ...measurements, length });
-                        updateDimensions();
                     }}
                 />
             </label>
