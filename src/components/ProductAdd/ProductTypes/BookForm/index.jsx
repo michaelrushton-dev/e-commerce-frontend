@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BookForm({ setWeight }) {
+function BookForm({ setWeight, weight }) {
     return (
         <div id='Book'>
             <label>
@@ -15,6 +15,12 @@ function BookForm({ setWeight }) {
                     }}
                 />
             </label>
+
+            {!/^(([0-9.]?)*)+$/.test(weight) && (
+                <p style={{ color: 'red' }}>
+                    Please, provide the data of indicated type
+                </p>
+            )}
 
             <p>Please provide the weight of the book in KG</p>
         </div>

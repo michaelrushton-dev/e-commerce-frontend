@@ -14,7 +14,8 @@ function ProductForm() {
     const [price, setPrice] = useState('');
     const [value, setValue] = useState('');
 
-    console.log(/^[0-9]*$/.test(price));
+    //checks that all fields are valid (switched to false by any eroneous entries)
+    const [isValid, setIsValid] = useState();
 
     async function handleSubmit(e) {
         //prevents page refresh on submit
@@ -29,18 +30,24 @@ function ProductForm() {
         };
         console.log(newProduct);
 
-        try {
-            const response = await fetch(
-                'http://localhost/scandiweb_proj/api/add_item.php',
-                { method: 'POST', body: JSON.stringify(newProduct) }
-            );
-            console.log(JSON.stringify(newProduct));
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            console.log('There was an error', error);
+        //regex checking that price and value are of correct value type before submit is allowed
+        if (/^(([0-9.]?)*)+$/.test(price) && /^(([0-9.]?)*)+$/.test(value)) {
+            try {
+                const response = await fetch(
+                    'http://localhost/scandiweb_proj/api/add_item.php',
+                    { method: 'POST', body: JSON.stringify(newProduct) }
+                );
+                console.log(JSON.stringify(newProduct));
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.log('There was an error', error);
+            }
+        } else {
+            alert('Please correct the input errors before submitting');
         }
     }
+    console.log(isValid);
 
     return (
         <>
@@ -81,6 +88,9 @@ function ProductForm() {
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
+                {/* {/\d/.test(name) && (
+                    <p style={{ color: 'red' }}>Name can not contain numbers</p>
+                )} */}
                 <label>
                     <p>PRICE($)</p>
                     <input
@@ -112,10 +122,9 @@ function ProductForm() {
 
                 {!/^(([0-9.]?)*)+$/.test(price) && (
                     <p style={{ color: 'red' }}>
-                        'Please ONLY enter numerical values'
+                        Please enter only numerical values
                     </p>
                 )}
-
                 <br></br>
                 <select
                     id='productType'
@@ -129,11 +138,11 @@ function ProductForm() {
                 </select>
                 <div id='product-option'>
                     {type == 'DVD' ? (
-                        <DVDForm setSize={setValue} />
+                        <DVDForm setSize={setValue} size={value} />
                     ) : type == 'Furniture' ? (
                         <FurnitureForm setDimensions={setValue} />
                     ) : (
-                        <BookForm setWeight={setValue} />
+                        <BookForm setWeight={setValue} weight={value} />
                     )}
                 </div>
             </form>

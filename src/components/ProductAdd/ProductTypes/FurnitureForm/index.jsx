@@ -29,6 +29,11 @@ function FurnitureForm({ setDimensions }) {
                     }}
                 />
             </label>
+            {!/^(([0-9.]?)*)+$/.test(measurements.height) && (
+                <p style={{ color: 'red' }}>
+                    Please, provide the data of indicated type
+                </p>
+            )}
             <label id='width'>
                 <p>WIDTH(CM)</p>
                 <input
@@ -42,6 +47,11 @@ function FurnitureForm({ setDimensions }) {
                     }}
                 />
             </label>
+            {!/^(([0-9.]?)*)+$/.test(measurements.width) && (
+                <p style={{ color: 'red' }}>
+                    Please, provide the data of indicated type
+                </p>
+            )}
             <label id='length'>
                 <p>LENGTH(CM)</p>
                 <input
@@ -55,6 +65,11 @@ function FurnitureForm({ setDimensions }) {
                     }}
                 />
             </label>
+            {!/^(([0-9.]?)*)+$/.test(measurements.length) && (
+                <p style={{ color: 'red' }}>
+                    Please, provide the data of indicated type
+                </p>
+            )}
 
             <p>Please provide the dimensions of the item in HxWxL format</p>
         </div>

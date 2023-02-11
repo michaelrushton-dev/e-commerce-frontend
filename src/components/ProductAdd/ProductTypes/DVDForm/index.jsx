@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DVDForm({ setSize }) {
+function DVDForm({ setSize, size }) {
     return (
         <div id='DVD'>
             <label>
@@ -13,6 +13,11 @@ function DVDForm({ setSize }) {
                     onChange={(e) => setSize(e.target.value)}
                 />
             </label>
+            {!/^(([0-9.]?)*)+$/.test(size) && (
+                <p style={{ color: 'red' }}>
+                    Please, provide the data of indicated type
+                </p>
+            )}
 
             <p>Please provide the data size of the DVD in MB</p>
         </div>
