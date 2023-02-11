@@ -51,7 +51,15 @@ function ProductForm() {
                         id='sku'
                         required
                         value={sku}
-                        onChange={(e) => setSku(e.target.value)}
+                        onChange={(e) => {
+                            setSku(e.target.value);
+                        }}
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity(
+                                'Please, submit required data'
+                            );
+                        }}
+                        onInput={(e) => e.target.setCustomValidity('')}
                     />
                 </label>
                 <label>
@@ -62,6 +70,11 @@ function ProductForm() {
                         id='name'
                         required
                         value={name}
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity(
+                                'Please, submit required data'
+                            );
+                        }}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
@@ -73,9 +86,25 @@ function ProductForm() {
                         id='price'
                         required
                         value={price}
-                        onChange={(e) => setPrice(e.target.value)}
+                        onInvalid={(e) => {
+                            e.target.setCustomValidity(
+                                'Please, submit required data'
+                            );
+                        }}
+                        onChange={(e) => {
+                            if (
+                                e.target.value.toUpperCase() ==
+                                e.target.value.toLowerCase()
+                            ) {
+                                console.log('is a number');
+                                setPrice(e.target.value);
+                            } else {
+                                console.log('isnt a number');
+                            }
+                        }}
                     />
                 </label>
+                <p>Please enter numerical price value </p>
 
                 <br></br>
                 <select
