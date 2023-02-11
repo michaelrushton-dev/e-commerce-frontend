@@ -14,9 +14,12 @@ function ProductForm() {
     const [price, setPrice] = useState('');
     const [value, setValue] = useState('');
 
+    console.log(/^[0-9]*$/.test(price));
+
     async function handleSubmit(e) {
         //prevents page refresh on submit
         e.preventDefault();
+        //constructing object as per db schema
         const newProduct = {
             sku,
             name,
@@ -41,7 +44,6 @@ function ProductForm() {
 
     return (
         <>
-            <div>ProductForm</div>
             <form id='product_form' onSubmit={handleSubmit}>
                 <label>
                     <p>SKU</p>
@@ -75,6 +77,7 @@ function ProductForm() {
                                 'Please, submit required data'
                             );
                         }}
+                        onInput={(e) => e.target.setCustomValidity('')}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
@@ -100,11 +103,18 @@ function ProductForm() {
                                 setPrice(e.target.value);
                             } else {
                                 console.log('isnt a number');
+                                setPrice(e.target.value);
                             }
                         }}
+                        onInput={(e) => e.target.setCustomValidity('')}
                     />
                 </label>
-                <p>Please enter numerical price value </p>
+
+                {!/^(([0-9.]?)*)+$/.test(price) && (
+                    <p style={{ color: 'red' }}>
+                        'Please ONLY enter numerical values'
+                    </p>
+                )}
 
                 <br></br>
                 <select

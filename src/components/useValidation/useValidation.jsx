@@ -1,13 +1,13 @@
-import { useState, useReducer } from 'react';
+import { useReducer } from 'react';
 
 export function useValidation({ input }) {
-    dispatch({ type: input.type, value: input.value });
-    const [isValid, dispatch] = useReducer(reducer, initialState);
     const initialState = '';
     const reducer = (state, action) => {
         switch (action.type) {
             case 'price':
-                action.value;
+                return action.value.toUppercase() === action.value.toLowercase()
+                    ? (state = isValid)
+                    : (state = !isValid);
             //some code to validate price $
             case 'size':
                 action.value;
@@ -26,5 +26,7 @@ export function useValidation({ input }) {
         }
     };
 
+    const [isValid, dispatch] = useReducer(reducer, initialState);
+    dispatch({ type: input.type, value: input.value });
     return { isValid };
 }
