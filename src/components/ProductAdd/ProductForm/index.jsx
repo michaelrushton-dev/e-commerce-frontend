@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import DVDForm from '../ProductTypes/DVDForm';
 import FurnitureForm from '../ProductTypes/FurnitureForm';
 import BookForm from '../ProductTypes/BookForm';
+import { useNavigate } from 'react-router-dom';
+//bringing in list context to check for existing SKUs
+import { ListContext } from '../../../App';
 
 function ProductForm() {
+    //context of list of products with values listState and listDispatch
+    const listContext = useContext(ListContext);
+    //react-router hook, used to redirect to '/' home once handleSubmit is called
+    const navigate = useNavigate();
+
     // CONTROLLED INPUTS
     //state of type switcher which will conditionally render the product entry option (default DVD)
     const [type, setType] = useState('DVD');
@@ -14,8 +22,18 @@ function ProductForm() {
     const [price, setPrice] = useState('');
     const [value, setValue] = useState('');
 
-    //checks that all fields are valid (switched to false by any eroneous entries)
-    const [isValid, setIsValid] = useState();
+    const [skuClash, setSkuClash] = useState(false);
+
+    useEffect(() => {
+        for (const item of listContext.listState) {
+            if (item.sku == sku) {
+                setSkuClash(true);
+                return;
+            } else {
+                setSkuClash(false);
+            }
+        }
+    }, [sku]);
 
     async function handleSubmit(e) {
         //prevents page refresh on submit
@@ -30,8 +48,12 @@ function ProductForm() {
         };
         console.log(newProduct);
 
-        //regex checking that price and value are of correct value type before submit is allowed
-        if (/^(([0-9.]?)*)+$/.test(price) && /^(([0-9.]?)*)+$/.test(value)) {
+        //regex checking that price and value are of correct value type and that sku is unique before submit is allowed
+        if (
+            /^(([0-9.]?)*)+$/.test(price) &&
+            /^(([0-9.x]?)*)+$/.test(value) &&
+            !skuClash
+        ) {
             try {
                 const response = await fetch(
                     'http://localhost/scandiweb_proj/api/add_item.php',
@@ -40,6 +62,10 @@ function ProductForm() {
                 console.log(JSON.stringify(newProduct));
                 const data = await response.json();
                 console.log(data);
+                //refreshes the ProductList by triggering a fetch GET on db table
+                listContext.listDispatch({ type: 'trigger' });
+                //redirects browser to home
+                navigate('/');
             } catch (error) {
                 console.log('There was an error', error);
             }
@@ -47,7 +73,6 @@ function ProductForm() {
             alert('Please correct the input errors before submitting');
         }
     }
-    console.log(isValid);
 
     return (
         <>
@@ -71,6 +96,7 @@ function ProductForm() {
                         onInput={(e) => e.target.setCustomValidity('')}
                     />
                 </label>
+                {skuClash && <p style={{ color: 'red' }}>SKU already in use</p>}
                 <label>
                     <p>NAME</p>
                     <input
