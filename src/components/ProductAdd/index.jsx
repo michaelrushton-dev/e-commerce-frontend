@@ -6,7 +6,7 @@ import ProductForm from './ProductForm';
 function ProductAdd() {
     return (
         <div>
-            <div id='main-page'>
+            <div id='add-page'>
                 <div id='heading'>
                     <h1>Product Add</h1>
                     <div id='button-container'>

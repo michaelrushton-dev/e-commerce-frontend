@@ -21,7 +21,6 @@ function ProductTile({ list, setChecked, checked }) {
                     ></input>
                 </div>
                 <div className='product-info'>
-                    <p>{list.id}</p>
                     <p>{list.sku}</p>
                     <p>{list.name}</p>
                     <p>{list.price}$</p>

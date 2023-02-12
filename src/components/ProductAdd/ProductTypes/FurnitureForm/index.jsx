@@ -11,13 +11,15 @@ function FurnitureForm({ setDimensions }) {
     // prevents react rendering one step behind on every event change (key press in field)
     useEffect(() => {
         const heightWidthLength = `${measurements.height}x${measurements.width}x${measurements.length}`;
-        setDimensions(heightWidthLength);
+        if (measurements.height && measurements.width && measurements.length) {
+            setDimensions(heightWidthLength);
+        }
     }, [measurements]);
 
     return (
         <div id='Furniture'>
-            <label id='height'>
-                <p>HEIGHT(CM)</p>
+            <div className='value-box'>
+                <label htmlFor='height'>Height (CM)</label>
                 <input
                     type='text'
                     name='HEIGHT'
@@ -28,14 +30,15 @@ function FurnitureForm({ setDimensions }) {
                         setMeasurements({ ...measurements, height });
                     }}
                 />
-            </label>
+            </div>
+
             {!/^(([0-9.]?)*)+$/.test(measurements.height) && (
                 <p style={{ color: 'red' }}>
                     Please, provide the data of indicated type
                 </p>
             )}
-            <label id='width'>
-                <p>WIDTH(CM)</p>
+            <div className='value-box'>
+                <label htmlFor='width'>Width(CM)</label>
                 <input
                     type='text'
                     name='WIDTH'
@@ -46,14 +49,15 @@ function FurnitureForm({ setDimensions }) {
                         setMeasurements({ ...measurements, width });
                     }}
                 />
-            </label>
+            </div>
+
             {!/^(([0-9.]?)*)+$/.test(measurements.width) && (
                 <p style={{ color: 'red' }}>
                     Please, provide the data of indicated type
                 </p>
             )}
-            <label id='length'>
-                <p>LENGTH(CM)</p>
+            <div className='value-box'>
+                <label htmlFor='length'>Length (CM)</label>
                 <input
                     type='text'
                     name='LENGTH'
@@ -64,13 +68,13 @@ function FurnitureForm({ setDimensions }) {
                         setMeasurements({ ...measurements, length });
                     }}
                 />
-            </label>
+            </div>
             {!/^(([0-9.]?)*)+$/.test(measurements.length) && (
                 <p style={{ color: 'red' }}>
                     Please, provide the data of indicated type
                 </p>
             )}
-
+            <br></br>
             <p>Please provide the dimensions of the item in HxWxL format</p>
         </div>
     );

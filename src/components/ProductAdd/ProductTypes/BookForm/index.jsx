@@ -3,8 +3,8 @@ import React from 'react';
 function BookForm({ setWeight, weight }) {
     return (
         <div id='Book'>
-            <label>
-                <p>WEIGHT(KG)</p>
+            <div className='value-box'>
+                <label htmlFor='weight'>Weight (KG)</label>
                 <input
                     type='text'
                     name='WEIGHT'
@@ -14,14 +14,14 @@ function BookForm({ setWeight, weight }) {
                         setWeight(e.target.value);
                     }}
                 />
-            </label>
+            </div>
 
             {!/^(([0-9.]?)*)+$/.test(weight) && (
                 <p style={{ color: 'red' }}>
                     Please, provide the data of indicated type
                 </p>
             )}
-
+            <br></br>
             <p>Please provide the weight of the book in KG</p>
         </div>
     );
