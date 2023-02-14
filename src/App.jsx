@@ -21,7 +21,9 @@ function App() {
     const [list, dispatch] = useReducer(reducer, initialState);
 
     async function fetchList() {
-        const response = await fetch('http://localhost/scandiweb_proj/');
+        const response = await fetch(
+            'https://e-commerce-proj-backend.000webhostapp.com/'
+        );
         const data = await response.json(response);
         dispatch({ type: 'fetch', data: data });
     }

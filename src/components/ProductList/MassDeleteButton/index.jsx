@@ -15,7 +15,7 @@ function MassDeleteButton({ checked, setChecked }) {
 
         try {
             const response = await fetch(
-                'http://localhost/scandiweb_proj/api/delete.php',
+                'http://e-commerce-proj-backend.000webhostapp.com/api/delete.php',
                 { method: 'DELETE', body: JSON.stringify(object) }
             );
             console.log(JSON.stringify(object));
