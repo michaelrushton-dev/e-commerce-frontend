@@ -22,7 +22,7 @@ function App() {
 
     async function fetchList() {
         const response = await fetch(
-            'https://e-commerce-michael-rushton.infinityfreeapp.com/'
+            'https://e-commerce-michael-rushton.infinityfreeapp.com'
         );
         const data = await response.json(response);
         dispatch({ type: 'fetch', data: data });
