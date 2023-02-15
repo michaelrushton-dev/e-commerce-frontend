@@ -61,6 +61,9 @@ function ProductForm() {
                     {
                         method: 'POST',
                         body: JSON.stringify(newProduct),
+                        headers: {
+                            'content-type': 'application/json',
+                        },
                     }
                 );
                 console.log(JSON.stringify(newProduct));
