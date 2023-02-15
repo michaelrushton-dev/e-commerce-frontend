@@ -50,11 +50,9 @@ function ProductForm() {
         console.log(newProduct);
 
         //regex checking that price and value are of correct value type and that sku is unique before submit is allowed
-        if (
-            /^(([0-9.]?)*)+$/.test(price) &&
-            /^(([0-9.x]?)*)+$/.test(value) &&
-            !skuClash
-        ) {
+        const priceRegex = '/^(([0-9.]?)*)+$/';
+        const valueRegex = '^(([0-9.x]?)*)+$/';
+        if (priceRegex.test(price) && valueRegex.test(value) && !skuClash) {
             try {
                 const response = await fetch(
                     'https://e-commerce-proj-backend.000webhostapp.com/add_item.php',
