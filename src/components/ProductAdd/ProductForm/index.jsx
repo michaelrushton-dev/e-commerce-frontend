@@ -58,7 +58,14 @@ function ProductForm() {
             try {
                 const response = await fetch(
                     'https://e-commerce-proj-backend.000webhostapp.com/add_item.php',
-                    { method: 'POST', body: JSON.stringify(newProduct) }
+                    {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify(newProduct),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
                 );
                 console.log(JSON.stringify(newProduct));
                 const data = await response.json();
