@@ -26,9 +26,7 @@ function App() {
             {
                 method: 'DELETE',
                 body: JSON.stringify(object),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { method: GET, 'Content-Type': 'application/json' },
             }
         );
         const data = await response.json(response);
