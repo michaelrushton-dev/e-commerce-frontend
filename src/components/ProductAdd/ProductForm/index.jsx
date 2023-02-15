@@ -60,7 +60,6 @@ function ProductForm() {
                     'https://e-commerce-proj-backend.000webhostapp.com/add_item.php',
                     {
                         method: 'POST',
-                        mode: 'no-cors',
                         body: JSON.stringify(newProduct),
                     }
                 );
