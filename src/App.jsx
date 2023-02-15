@@ -24,8 +24,7 @@ function App() {
         const response = await fetch(
             'https://e-commerce-michael-rushton.infinityfreeapp.com',
             {
-                method: 'DELETE',
-                body: JSON.stringify(object),
+                method: 'GET',
                 headers: { method: GET, 'Content-Type': 'application/json' },
             }
         );
