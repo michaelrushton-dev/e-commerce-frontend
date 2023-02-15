@@ -7,7 +7,7 @@ import ProductTile from './ProductTile/index.jsx';
 function ProductList({ list }) {
     const [checked, setChecked] = useState([]);
     // console.log(list);
-    console.log({ checked });
+    // console.log({ checked });
     return (
         <>
             <div id='main-page'>

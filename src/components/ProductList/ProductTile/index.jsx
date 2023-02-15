@@ -2,7 +2,7 @@ import React from 'react';
 
 function ProductTile({ list, setChecked, checked }) {
     function handleChange(e) {
-        console.log(e.target.checked);
+        // console.log(e.target.checked);
         //if not checked, set state to be filtered to not contain the current id
         const previousState = checked.filter((elem) => elem !== list.id);
         e.target.checked
