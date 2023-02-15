@@ -15,7 +15,7 @@ function MassDeleteButton({ checked, setChecked }) {
 
         try {
             const response = await fetch(
-                'http://e-commerce-michael-rushton.infinityfreeapp.com/api/delete.php',
+                'https://e-commerce-michael-rushton.infinityfreeapp.com/api/delete.php',
                 { method: 'DELETE', body: JSON.stringify(object) }
             );
             console.log(JSON.stringify(object));
