@@ -25,7 +25,7 @@ function App() {
             'https://e-commerce-michael-rushton.infinityfreeapp.com',
             {
                 method: 'GET',
-                headers: { method: GET, 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json' },
             }
         );
         const data = await response.json(response);
