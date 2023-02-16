@@ -29,7 +29,7 @@ function App() {
                 headers: { 'Content-Type': 'application/json' },
             }
         );
-        const data = await response.json(response);
+        const data = await response.json();
         dispatch({ type: 'fetch', data: data });
     }
 
