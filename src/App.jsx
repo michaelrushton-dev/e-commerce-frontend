@@ -21,9 +21,12 @@ function App() {
     const [list, dispatch] = useReducer(reducer, initialState);
 
     async function fetchList() {
-        const response = await fetch('/index.php', {
-            method: 'GET',
-        });
+        const response = await fetch(
+            'https://e-commerce-proj-backend.000webhostapp.com',
+            {
+                method: 'GET',
+            }
+        );
         const data = await response.json();
         dispatch({ type: 'fetch', data: data });
     }
