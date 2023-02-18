@@ -22,14 +22,14 @@ function MassDeleteButton({ checked, setChecked }) {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            console.log(JSON.stringify(object));
-            const data = await response.json();
-            console.log(data);
+            // console.log(JSON.stringify(object));
+            // const data = await response.json();
+            // console.log(data);
             //setting checked list back to empty
             setChecked([]);
             listContext.listDispatch({ type: 'trigger' });
         } catch (error) {
-            console.log('There was an error', error);
+            // console.log('There was an error', error);
         }
     }
 
