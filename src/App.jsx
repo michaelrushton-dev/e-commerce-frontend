@@ -21,7 +21,7 @@ function App() {
     const [list, dispatch] = useReducer(reducer, initialState);
 
     async function fetchList() {
-        const response = await fetch('/', {
+        const response = await fetch('/index.php', {
             method: 'GET',
         });
         const data = await response.json();
