@@ -19,7 +19,6 @@ function MassDeleteButton({ checked, setChecked }) {
                 {
                     method: 'DELETE',
                     body: JSON.stringify(object),
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
