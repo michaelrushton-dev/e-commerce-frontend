@@ -57,7 +57,7 @@ function ProductForm() {
         ) {
             try {
                 const response = await fetch(
-                    'https://e-commerce-proj-backend.000webhostapp.com/api/add_item.php',
+                    'https://e-commerce-proj-backend.000webhostapp.com/add_item',
                     {
                         method: 'POST',
                         body: JSON.stringify(newProduct),

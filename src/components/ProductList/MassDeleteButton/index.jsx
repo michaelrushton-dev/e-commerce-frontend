@@ -15,21 +15,22 @@ function MassDeleteButton({ checked, setChecked }) {
 
         try {
             const response = await fetch(
-                'https://e-commerce-proj-backend.000webhostapp.com/api/delete.php',
+                'https://e-commerce-proj-backend.000webhostapp.com/delete',
                 {
-                    method: 'DELETE',
+                    method: 'POST',
                     body: JSON.stringify(object),
+
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            // console.log(JSON.stringify(object));
-            // const data = await response.json();
-            // console.log(data);
+            console.log(JSON.stringify(object));
+            const data = await response.json();
+            console.log(data);
             //setting checked list back to empty
             setChecked([]);
             listContext.listDispatch({ type: 'trigger' });
         } catch (error) {
-            // console.log('There was an error', error);
+            console.log('There was an error', error);
         }
     }
 
