@@ -16,7 +16,12 @@ function MassDeleteButton({ checked, setChecked }) {
         try {
             const response = await fetch(
                 'https://e-commerce-proj-backend.000webhostapp.com/api/delete.php',
-                { method: 'DELETE', body: JSON.stringify(object) }
+                {
+                    method: 'DELETE',
+                    body: JSON.stringify(object),
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                }
             );
             console.log(JSON.stringify(object));
             const data = await response.json();
