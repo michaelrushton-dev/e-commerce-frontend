@@ -57,7 +57,7 @@ function ProductForm() {
         ) {
             try {
                 const response = await fetch(
-                    'https://e-commerce-michael-rushton.infinityfreeapp.com/add_item.php',
+                    'https://e-commerce-proj-backend.000webhostapp.com/add_item.php',
                     {
                         method: 'POST',
                         body: JSON.stringify(newProduct),
