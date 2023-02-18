@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "proxy": "https://e-commerce-michael-rushton.infinityfreeapp.com/",
+    "proxy": "https://e-commerce-proj-backend.000webhostapp.com",
     "scripts": {
         "dev": "vite",
         "build": "vite build",

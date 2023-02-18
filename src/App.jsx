@@ -22,7 +22,7 @@ function App() {
 
     async function fetchList() {
         const response = await fetch(
-            'https://e-commerce-michael-rushton.infinityfreeapp.com',
+            'https://e-commerce-proj-backend.000webhostapp.com',
             {
                 method: 'GET',
                 // mode: 'no-cors',
