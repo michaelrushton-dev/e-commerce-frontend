@@ -55,45 +55,22 @@ function ProductForm() {
             /^(([0-9.x]?)*)+$/.test(value) &&
             !skuClash
         ) {
-            // try {
-            //     const response = await fetch(
-            //         'https://e-commerce-michael-rushton.herokuapp.com/add_item',
-            //         {
-            //             method: 'POST',
-            //             body: JSON.stringify(newProduct),
-            //             headers: {
-            //                 'Content-Type': 'application/json',
-            //             },
-            //         }
-            //     );
-            //     console.log(JSON.stringify(newProduct));
-            //     const data = await response.json();
-            //     console.log(data);
-            //     //refreshes the ProductList by triggering a fetch GET on db table
-            //     listContext.listDispatch({ type: 'trigger' });
-            //     //redirects browser to home
-            //     navigate('/');
-            // } catch (error) {
-            //     console.log('There was an error', error);
-            var raw = `'{\r\n    "sku": ${newProduct.sku},\r\n    "name": ${newProduct.name},\r\n    "price": ${newProduct.price},\r\n    "type": ${newProduct.type},\r\n    "value": ${newProduct.value}\r\n}'`;
-
             try {
-                const response = fetch(
+                const response = await fetch(
                     'https://e-commerce-michael-rushton.herokuapp.com/add_item',
                     {
                         method: 'POST',
-                        body: raw,
-                        redirect: 'follow',
+                        body: JSON.stringify(newProduct),
+                        // headers: {
+                        //     'Content-Type': 'application/json',
+                        // },
                     }
-                )
-                    .then((response) => response.text())
-                    .then((result) => console.log(result))
-                    .catch((error) => console.log('error', error));
-                console.log(response);
+                );
+                console.log(JSON.stringify(newProduct));
                 const data = await response.json();
                 console.log(data);
                 //refreshes the ProductList by triggering a fetch GET on db table
-                //     listContext.listDispatch({ type: 'trigger' });
+                listContext.listDispatch({ type: 'trigger' });
                 //redirects browser to home
                 navigate('/');
             } catch (error) {
