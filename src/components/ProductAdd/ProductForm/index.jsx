@@ -60,9 +60,15 @@ function ProductForm() {
                     'https://e-commerce-michael-rushton.herokuapp.com/add_item',
                     {
                         method: 'POST',
-                        body: JSON.stringify(newProduct),
+                        body: JSON.stringify({
+                            sku: '1344495',
+                            name: ' Wooster',
+                            price: '',
+                            type: 'DVD',
+                            value: '21',
+                        }),
                         headers: {
-                            'content-type': 'application/json',
+                            'Content-Type': 'application/json',
                         },
                     }
                 );

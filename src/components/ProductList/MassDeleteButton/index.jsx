@@ -19,7 +19,6 @@ function MassDeleteButton({ checked, setChecked }) {
                 {
                     method: 'POST',
                     body: JSON.stringify(object),
-
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
