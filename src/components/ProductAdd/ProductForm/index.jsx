@@ -75,7 +75,8 @@ function ProductForm() {
             //     navigate('/');
             // } catch (error) {
             //     console.log('There was an error', error);
-            var raw = `{\r\n    "sku": ${newProduct.sku},\r\n    "name": ${newProduct.name},\r\n    "price": ${newProduct.price},\r\n    "type": ${newProduct.type},\r\n    "value": ${newProduct.value}\r\n}`;
+            var raw = `'{\r\n    "sku": ${newProduct.sku},\r\n    "name": ${newProduct.name},\r\n    "price": ${newProduct.price},\r\n    "type": ${newProduct.type},\r\n    "value": ${newProduct.value}\r\n}'`;
+
             try {
                 const response = fetch(
                     'https://e-commerce-michael-rushton.herokuapp.com/add_item',
@@ -92,7 +93,7 @@ function ProductForm() {
                 const data = await response.json();
                 console.log(data);
                 //refreshes the ProductList by triggering a fetch GET on db table
-                listContext.listDispatch({ type: 'trigger' });
+                //     listContext.listDispatch({ type: 'trigger' });
                 //redirects browser to home
                 navigate('/');
             } catch (error) {
