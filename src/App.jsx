@@ -22,7 +22,7 @@ function App() {
 
     async function fetchList() {
         const response = await fetch(
-            'https://e-commerce-proj-backend.000webhostapp.com',
+            'https://e-commerce-michael-rushton.herokuapp.com',
             {
                 method: 'GET',
             }

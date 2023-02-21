@@ -15,7 +15,7 @@ function MassDeleteButton({ checked, setChecked }) {
 
         try {
             const response = await fetch(
-                'https://e-commerce-proj-backend.000webhostapp.com/delete',
+                'https://e-commerce-michael-rushton.herokuapp.com/delete',
                 {
                     method: 'POST',
                     body: JSON.stringify(object),
